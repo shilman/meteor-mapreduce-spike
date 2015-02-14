@@ -1,0 +1,15 @@
+<template name="home">
+  <div class="container">
+    <div class="jumbotron">
+      {{#unless ready}}
+        Loading...
+      {{else}}
+        <ul>
+        {{#each groups}}
+          <li>{{key}}: {{value}}</li>
+        {{/each}}
+        </ul>
+      {{/unless}}
+    </div>
+  </div>
+</template>
