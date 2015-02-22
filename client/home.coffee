@@ -1,7 +1,7 @@
 @Groups = new Mongo.Collection("groups")
 
 Template.home.created = ->
-  @sub = Meteor.subscribe("mapreduceGroups")
+  @sub = PseudoSub.subscribe(Groups, "testing")
 
 Template.home.destroyed = ->
   @sub and @sub.stop()
