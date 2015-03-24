@@ -1,7 +1,7 @@
-@Groups = new Mongo.Collection("groups")
+@Groups = new Mongo.Collection(null)
 
 Template.home.created = ->
-  @sub = PseudoSub.subscribe(Groups, "testing")
+  @sub = PseudoSub.subscribe(Groups, "method1")
 
 Template.home.destroyed = ->
   @sub and @sub.stop()

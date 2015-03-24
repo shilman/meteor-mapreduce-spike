@@ -10,19 +10,17 @@ Package.onUse(function(api) {
   api.export(['PseudoSub']);
 });
 
-//Package.onTest(function(api) {
-//  configurePackage(api);
-//
-//  api.use(['tinytest', 'mongo-livedata'], ['client', 'server']);
-//});
-
 function configurePackage(api) {
   api.versionsFrom('METEOR@0.9.2');
   api.use([
-    'tracker', 'underscore', 'mongo', 'reactive-var', 'http'
+    'coffeescript', 'underscore', 'reactive-var'
+  ]);
+
+  api.add_files([
+    'client.coffee',
   ], ['client']);
 
   api.add_files([
-    'client.js',
-  ], ['client']);
+    'server.coffee',
+  ], ['server']);
 }

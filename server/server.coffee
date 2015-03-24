@@ -26,7 +26,9 @@ Meteor.publish('aggregateGroups', ->
 )
 
 Meteor.publish('mapreduceGroups', ->
-  map = -> emit(@key, @value)
+  map = ->
+    bucket = if @value < .3 then "a" else "b"
+    emit(bucket, @value)
   reduce = (key, values) -> values.length
   options =
     query: {}
@@ -40,4 +42,17 @@ Meteor.publish('mapreduceGroups', ->
     @added("groups", group._id, {key: group._id, value: group.value})
   )
   @ready()
+)
+
+Meteor.methods(
+  methodGroups: ->
+    groups = Items.aggregate([
+      {$group: {_id: "$key", value: {$avg: "$value"}, count: { $sum: 1 }}}
+    ])
+    _.map(groups, (group) => {_id: group._id, key: group._id, value: group.value})
+)
+
+
+PseudoSub.publish("method1", ->
+  {test: "test"}
 )

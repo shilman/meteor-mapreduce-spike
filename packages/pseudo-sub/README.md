@@ -11,11 +11,10 @@ meteor add lab80:pseudo-sub
 
 ## Client Pseudo-Subscription
 
-```js
-var subscription = PseudoSub.subscribe(collection, "methodName", arguments);
-if(subscription.ready()) {
+```coffee
+subscription = PseudoSub.subscribe(collection, "methodName", arguments);
+if subscription.ready()
   ...
-}
 ```
 
 Notes:
